@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration Result</title>
+</head>
+<body>
+    <h1>Hospital Registered Successfully</h1>
+    <p>ID: <span th:text="${hospital.hospitalId}"></span></p>
+    <p>Name: <span th:text="${hospital.name}"></span></p>
+    <p>Address: <span th:text="${hospital.address}"></span></p>
+    <p>Contact Number: <span th:text="${hospital.contactNumber}"></span></p>
+    <p>Latitude: <span th:text="${hospital.latitude}"></span></p>
+    <p>Longitude: <span th:text="${hospital.longitude}"></span></p>
+</body>
+</html>
