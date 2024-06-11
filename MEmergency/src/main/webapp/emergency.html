@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Report Emergency</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <h1>Report Emergency</h1>
+</header>
+<div class="container">
+    <form th:action="@{/emergencies}" th:object="${emergency}" method="post">
+        <input type="text" th:field="*{phoneNumber}" placeholder="Phone Number" required />
+        <input type="text" th:field="*{diseaseType}" placeholder="Disease Type" required />
+        <button type="submit">Report Emergency</button>
+    </form>
+</div>
+</body>
+</html>

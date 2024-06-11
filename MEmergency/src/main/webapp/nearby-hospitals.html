@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nearby Hospitals</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+</head>
+<body>
+<header>
+    <h1>Nearby Hospitals</h1>
+</header>
+<div class="container">
+    <div id="map" style="height: 500px; width: 100%;"></div>
+    <div>
+        <ul>
+            <li th:each="hospital : ${nearbyHospitals}">
+                <p th:text="${hospital.name} + ' - ' + ${hospital.address} + ' (' + ${hospital.distance} + ' km)'"></p>
+                <p th:text="'Contact: ' + ${hospital.contactNumber}"></p>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    function initMap() {
+        var hospitals = /*[[${nearbyHospitals}]]*/ [];
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: {lat: hospitals[0].latitude, lng: hospitals[0].longitude}
+        });
+
+        hospitals.forEach(function(hospital) {
+            var marker = new google.maps.Marker({
+                position: {lat: hospital.latitude, lng: hospital.longitude},
+                map: map,
+                title: hospital.name
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                content: hospital.name + '<br>' + hospital.address
+            });
+
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register Hospital</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+</head>
+<body>
+<header>
+    <h1>Register Hospital</h1>
+</header>
+<div class="container">
+    <form th:action="@{/hospitals/register}" th:object="${hospital}" method="post">
+        <input type="text" th:field="*{name}" placeholder="Hospital Name" required />
+        <input type="text" th:field="*{address}" placeholder="Address" required />
+        <input type="text" th:field="*{contactNumber}" placeholder="Contact Number" required />
+        <input type="text" th:field="*{username}" placeholder="Username" required />
+        <input type="password" th:field="*{password}" placeholder="Password" required />
+        <input type="hidden" th:field="*{latitude}" id="latitude" />
+        <input type="hidden" th:field="*{longitude}" id="longitude" />
+        <div id="map" style="height: 400px; width: 100%;"></div>
+        <button type="submit">Register</button>
+    </form>
+</div>
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+        });
+
+        var marker = new google.maps.Marker({
+            position: {lat: -34.397, lng: 150.644},
+            map: map,
+            draggable: true
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function(event) {
+            document.getElementById('latitude').value = event.latLng.lat();
+            document.getElementById('longitude').value = event.latLng.lng();
+        });
+    }
+</script>
+</body>
+</html>
