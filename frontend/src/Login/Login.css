@@ -1,0 +1,32 @@
+.Login{
+    position: relative;
+    width:400px;
+    height:650px;
+    backdrop-filter: blur(40px);
+    color: rgb(15, 2, 2);
+    font-size: 20px;
+    border: 2px solid rgb(243, 242, 242);
+    border-radius: 25px;
+    overflow: hidden;
+    transition: transform .6s ease, height .2s ease-in-out;
+   
+}
+
+.login-input input, textarea{
+    height: 40px;
+    width: 300px;
+    padding: 5px;
+    margin: 5px;
+}
+.login-tittle{
+    font-size: 30px;
+}
+
+.login-input button{
+    width:100px;
+    height:45px;
+    border-radius: 16px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(248, 249, 239);
+    transition: background-color 0.3s;
+}
